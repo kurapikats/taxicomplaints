@@ -1,0 +1,33 @@
+{
+  "name": "TaxiComplaints",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Onin <kurapikats@yahoo.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "amd"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "less": "less.js#~2.5.3"
+  },
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0",
+    "bootstrap-datepicker": "~1.5.0",
+    "jquery-validation": "~1.14.0",
+    "jquery-colorbox": "colorbox#~1.6.3",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37"
+  }
+}

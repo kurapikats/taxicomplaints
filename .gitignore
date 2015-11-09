@@ -1,0 +1,13 @@
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+/public/components
+*.sublime-*
+composer.lock
+.env.example
+npm-debug*
+sh-thd*
+/public/images/uploads/*
+
