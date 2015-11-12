@@ -10,4 +10,4 @@ composer.lock
 npm-debug*
 sh-thd*
 /public/images/uploads/*
-
+/temp

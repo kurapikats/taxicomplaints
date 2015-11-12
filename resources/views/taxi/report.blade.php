@@ -5,6 +5,15 @@
 
     <script type="text/javascript">
     $(function () {
+        $('#btn-report-modal').click(function() {
+            $('#report-modal').modal('show');
+        });
+
+        // todo: remove existing form values after hiding the modal
+        $('#report-modal').on('hidden.bs.modal', function (e) {
+            // $('#report-form')
+        });
+
         $('#incident_date').datetimepicker({
             format: 'YYYY-MM-DD',
             maxDate: moment(),
@@ -42,6 +51,32 @@
                 }
             }
         });
+
+        $('#report-form').submit(function(e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                url: '/api/report',
+                type: 'POST',
+                data: formData,
+                async: false,
+                success: function(data) {
+                    $('.alert-success').fadeIn();
+                    setTimeout(function() {
+                        $('.alert-success').fadeOut();
+                    }, 3000);
+
+                    setTimeout(function() {
+                        $('#report-modal').modal('hide');
+                    }, 6000);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
     });
     </script>
 @stop
@@ -52,7 +87,7 @@
     <div class="modal-dialog large" role="document">
         <div class="modal-content">
 
-            {!! Form::open(array('files' => true, 'url' => 'report', 'class' => 'form-horizontal',
+            {!! Form::open(array('files' => true, 'url' => 'api/report', 'class' => 'form-horizontal',
                 'id' => 'report-form')) !!}
 
                 <div class="modal-header">
@@ -73,6 +108,12 @@
                             </div>
                         @endif
 
+                        <div class="alert alert-success" style="display:none;">
+                            <span class="glyphicon glyphicon-ok"
+                                aria-hidden="true"></span>
+                            <span class="sr-only">Success:</span>
+                            Taxi Complaint has been recorded.
+                        </div> <!-- /.alert-info -->
 
                         {!! csrf_field() !!}
 

@@ -28,6 +28,7 @@
     "bootstrap-datepicker": "~1.5.0",
     "jquery-validation": "~1.14.0",
     "jquery-colorbox": "colorbox#~1.6.3",
-    "eonasdan-bootstrap-datetimepicker": "~4.17.37"
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37",
+    "startbootstrap-sb-admin-2": "~1.0.7"
   }
 }

@@ -20,7 +20,7 @@ class CreateComplaintsTable extends Migration
             $table->string('incident_location');
             $table->text('notes')->nullable();
             $table->string('drivers_name')->nullable();
-            $table->boolean('valid')->nullable();
+            $table->boolean('valid')->default(false);
             $table->boolean('mail_sent')->default(false);
             $table->integer('created_by');
             $table->timestamps();

@@ -24,7 +24,7 @@ class TaxiController extends Controller
         $top_violators = TaxiViolation::getTopViolators(10);
         $taxis = Taxi::orderBy('id', 'desc')->paginate(10);
         $violations = Violation::lists('name', 'id');
-        return view('taxi.home', compact('taxis', 'top_violators', 'violations'));
+        return view('layouts.master', compact('taxis', 'top_violators', 'violations'));
     }
 
     public function search(Request $request)
@@ -103,6 +103,7 @@ class TaxiController extends Controller
             return redirect('search/' . $data['plate_number']);
         }
 
+        // user is not logged-in, try auto login the current reporter
         if (is_null($user))
         {
             Auth::attempt([
@@ -124,49 +125,16 @@ class TaxiController extends Controller
     {
         $taxi = Taxi::find($taxi_id);
 
-        // $this->sendMail($taxi);
-
         if (is_null($taxi))
         {
             return redirect('report');
         }
 
-        return view('taxi.view', compact('taxi'));
-    }
+        $top_violators = TaxiViolation::getTopViolators(10);
+        $taxis = Taxi::orderBy('id', 'desc')->paginate(10);
+        $violations = Violation::lists('name', 'id');
 
-    public function sendMail(TaxiComplaint $taxi_complaint)
-    {
-        $taxi           = $taxi_complaint->taxi();
-        $reporter       = $taxi_complaint->user();
-        $violations     = $taxi_complaint->violations();
-
-        $data = [
-            'taxi'       => $taxi,
-            'reporter'   => $reporter,
-            'violations' => $violations,
-            'complaint'  => $taxi_complaint
-        ];
-
-        return view('emails.taxi-complaint', compact('data'));
-
-        $target_email = config('app.taxi_complaint_email');
-        $target_name  = config('app.taxi_complaint_name');
-
-        // send url for full details of the complaints
-        $mail = Mail::queue('emails.taxi-complaint', $data,
-            function($message) use ($reporter) {
-                $message->to($target_email, $target_name)
-                ->from($reporter->email, $reporter->name)
-                ->subject('Taxi Complaint - Plate #:' . $taxi->plate_number);
-        });
-
-        return $mail;
-    }
-
-    public function mail(Request $request)
-    {
-        $taxi_complaint = TaxiComplaint::find($request->taxi_complaint_id);
-        return $this->sendMail($taxi_complaint);
+        return view('taxi.home', compact('taxi', 'taxis', 'top_violators', 'violations'));
     }
 
 }

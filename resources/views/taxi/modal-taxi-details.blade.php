@@ -60,16 +60,19 @@
                 var theadr = document.createElement('tr');
                 theadr.setAttribute('align', 'center');
                 var theadd = $(
+                    '<td class="col-sm-1">Ref #</td>' +
                     '<td class="col-sm-2">Incident Date</td>' +
                     '<td class="col-sm-2">Incident Time</td>' +
                     '<td class="col-sm-2">Driver\'s Name</td>' +
                     '<td class="col-sm-2">Incident Location</td>' +
-                    '<td class="col-sm-4">Notes</td>'
+                    '<td class="col-sm-3">Notes</td>'
                 );
                 $(theadr).append(theadd);
                 $(tbdy).append(theadr);
 
                 $(taxi_data.taxi_complaints).each(function(e) {
+
+                    var taxi_complaint_id = this.id;
 
                     var incident_date = new Date(this.incident_date);
                     var formatted_date = 'N/A';
@@ -117,6 +120,7 @@
 
                     var tr = document.createElement('tr');
                     var td = $(
+                        '<td align="center">' + taxi_complaint_id + '</td>' +
                         '<td align="center">' + formatted_date + '</td>' +
                         '<td align="center">' + formatted_time + '</td>' +
                         '<td>' + formatted_drivers_name + '</td>' +
@@ -185,6 +189,11 @@
             $('.taxi-modal-lg').modal('hide');
             $('#report-modal').modal('show');
         });
+
+        // auto load modal box if $object is not empty
+        @if (!empty($taxi))
+            taxiModal.show({{ $taxi->id }});
+        @endif
 
     })(jQuery);
     </script>

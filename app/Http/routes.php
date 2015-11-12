@@ -1,21 +1,5 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('/', 'TaxiController@home');
-
-Route::get('home', function () {
-    return view('static.home');
-});
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -37,13 +21,12 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('profile', 'UserController@profile');
 Route::resource('user', 'UserController');
 
-Route::get('report', 'TaxiController@report');
-Route::get('show/{id}', 'TaxiController@show');
-Route::get('report/{id}', 'TaxiController@create');
-Route::post('report', 'TaxiController@store');
-Route::post('mail', 'TaxiController@mail');
-
-Route::get('search/', 'TaxiController@search');
+Route::get('/{id}', 'TaxiController@show');
 
 Route::get('api/show/{taxi_id}', 'ApiController@show');
 Route::get('api/search/{keyword}', 'ApiController@search');
+Route::put('api/validate', 'ApiController@complaintValidate');
+Route::put('api/send-mail', 'ApiController@sendMail');
+Route::post('api/report', 'ApiController@report');
+
+Route::get('admin/dashboard', 'AdminController@dashboard');

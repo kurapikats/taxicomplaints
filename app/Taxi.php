@@ -67,7 +67,7 @@ class Taxi extends Model
         $order_by = 'asc', $limit = 10)
     {
         $keyword = self::sanitize($keyword);
-        $taxis   = Taxi::where($field_name, 'like', '%'.$keyword.'%')
+        $taxis   = self::where($field_name, 'like', '%'.$keyword.'%')
                     ->limit($limit)
                     ->orderBy($field_name, $order_by)->get();
 
@@ -95,26 +95,30 @@ class Taxi extends Model
             }
 
             $user_id      = ($user)?$user->id:1; // user's id or admin
-            $plate_number = Taxi::sanitize($request->plate_number);
+            $plate_number = self::sanitize($request->plate_number);
 
-            // find if it exist, if not create one
-            // if result yielded more than 1 do a taxi search
-            $taxi_search = Taxi::search($plate_number);
+            // 1. find if it exist, if not create one
+            // 2. if search result yielded more than 1 do a taxi search
+            $taxi_search = self::search($plate_number);
+
+            // use the existing taxi,
             if (count($taxi_search) === 1)
             {
-                // use the existing taxi,
                 // todo: should we also update with the new data?
                 $taxi = $taxi_search->first();
+                $taxi->description = $request->description;
+                $taxi->save();
             }
+            // no search result, create new taxi record
             else if (count($taxi_search) === 0)
             {
-                // create new taxi record
                 $taxi = new Taxi();
                 $taxi->plate_number = $plate_number;
                 $taxi->name         = $request->name;
                 $taxi->description  = $request->description;
                 $taxi->save();
             }
+            // search result more than 1, use plate_number as search parameter
             else
             {
                 return ['plate_number' => $plate_number];
@@ -181,7 +185,6 @@ class Taxi extends Model
                 }
             }
 
-            // $this->setTaxiId($taxi->id);
             return ['taxi_id' => $taxi->id];
         }); // end db::transaction
 

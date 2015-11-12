@@ -1,3 +1,7 @@
+@section('page_styles')
+    {!! Html::style('css/stylish-portfolio.css') !!}
+@stop
+
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
@@ -22,7 +26,6 @@
                     <a href="/auth/register">Register</a>
                 </li>
             @endif
-
             <li>
                 <a href="/#top" onclick = $("#menu-close").click(); >Home</a>
             </li>
@@ -62,8 +65,8 @@
                     <h3>Philippines</h3>
                     <br>
                     <!-- Button trigger modal -->
-                    <button class="btn btn-dark btn-lg" data-toggle="modal"
-                        data-target="#report-modal">Report a Taxi</button>
+                    <button class="btn btn-dark btn-lg" id="btn-report-modal">
+                        Report a Taxi</button>
                 </div>
                 <div class="col-sm-4">
                     @include('taxi.common.recently-added')
@@ -304,8 +307,8 @@
     });
     </script>
 
-    // login modal scripts
     <script type="text/javascript">
+    // login modal scripts
     $(function () {
         // trigger open modal login
         $('.login-modal-open').click(function() {
