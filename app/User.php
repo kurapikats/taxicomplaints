@@ -45,10 +45,16 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsTo('App\Role')->first();
     }
 
+    public function taxi_complaints()
+    {
+        return $this->hasMany('App\TaxiComplaint', 'created_by', 'id')->paginate(10);
+    }
+
     public function taxis()
     {
         $taxis = [];
         $taxi_complaints = TaxiComplaint::where('created_by', $this->id)->get();
+
         foreach ($taxi_complaints as $tc)
         {
             $taxis[] = $tc->taxi()->toArray();

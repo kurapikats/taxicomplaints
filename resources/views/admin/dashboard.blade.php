@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.backend')
 
 @section('page_styles')
 <style type="text/css">

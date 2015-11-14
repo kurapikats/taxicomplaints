@@ -20,6 +20,8 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 
 Route::get('profile', 'UserController@profile');
 Route::resource('user', 'UserController');
+Route::put('profile/update', 'UserController@profileUpdate');
+Route::put('profile/change-password', 'UserController@changePassword');
 
 Route::get('/{id}', 'TaxiController@show');
 

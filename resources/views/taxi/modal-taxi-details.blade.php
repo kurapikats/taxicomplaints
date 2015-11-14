@@ -77,7 +77,8 @@
                     var incident_date = new Date(this.incident_date);
                     var formatted_date = 'N/A';
                     if (incident_date != 'Invalid Date') {
-                        formatted_date = incident_date.getMonth() + '/' +
+                        var month = incident_date.getMonth() + 1;
+                        formatted_date = month + '/' +
                             incident_date.getDate() + '/' +
                             incident_date.getFullYear();
                     }

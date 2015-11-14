@@ -14,7 +14,11 @@
 
             @include('admin.includes.topnavbar')
 
-            @include('admin.includes.sidebar')
+            @if (Auth::user()->role_id == 1)
+                @include('admin.includes.sidebar')
+            @else
+                @include('admin.includes.user-sidebar')
+            @endif
         </nav>
 
         <div id="page-wrapper">

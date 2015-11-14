@@ -87,8 +87,8 @@
     <div class="modal-dialog large" role="document">
         <div class="modal-content">
 
-            {!! Form::open(array('files' => true, 'url' => 'api/report', 'class' => 'form-horizontal',
-                'id' => 'report-form')) !!}
+            {!! Form::open(['files' => true, 'url' => 'api/report', 'class' => 'form-horizontal',
+                'id' => 'report-form']) !!}
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
