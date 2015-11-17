@@ -31,6 +31,8 @@ class Taxi extends Model
     public function violations()
     {
         $taxi_complaints = $this->taxi_complaints();
+        $violations      = [];
+
         foreach ($taxi_complaints as $k => $taxi_complaint)
         {
             if (!empty($taxi_complaint->violations()))
