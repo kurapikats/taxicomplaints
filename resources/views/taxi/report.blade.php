@@ -70,7 +70,10 @@
 
                     setTimeout(function() {
                         $('#report-modal').modal('hide');
-                    }, 6000);
+                    }, 4000);
+                },
+                error: function(data) {
+                    console.log(data);
                 },
                 cache: false,
                 contentType: false,

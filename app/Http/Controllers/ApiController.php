@@ -93,7 +93,7 @@ class ApiController extends Controller
                 'email'                 => 'required|email',
                 'full_name'             => 'required',
                 'contact_number'        => 'required',
-                'password'              => 'required|confirmed'
+                'reg_password'          => 'required|confirmed'
             ];
         }
 
