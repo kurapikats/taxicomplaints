@@ -11,18 +11,6 @@
                     <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:{{ config('app.taxi_complaint_admin_email') }}">{{ config('app.taxi_complaint_admin_email') }}</a>
                     </li>
                 </ul>
-                <br>
-                <ul class="list-inline">
-                    <li>
-                        <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                    </li>
-                </ul>
                 <hr class="small">
                 <p class="text-muted">Copyright &copy; TaxiComplaints {{ date('Y') }}
                   <a href="/#top" class="go-top">

@@ -11,7 +11,17 @@
 
         // todo: remove existing form values after hiding the modal
         $('#report-modal').on('hidden.bs.modal', function (e) {
-            // $('#report-form')
+            var form = $('#report-form');
+
+            form[0].reset();
+
+            form.not(':button, :submit, :reset, :hidden')
+                .val('')
+                .removeAttr('checked')
+                .removeAttr('selected');
+
+            var validator = form.validate();
+            validator.resetForm();
         });
 
         $('#incident_date').datetimepicker({
@@ -26,7 +36,7 @@
             stepping: 5
         });
 
-        // validation for report form
+        // js validate the form before submitting to the backend
         $("#report-form").validate({
             rules: {
                 'plate_number': 'required',
@@ -49,36 +59,32 @@
                 } else {
                   error.insertAfter(element);
                 }
+            },
+            submitHandler: function(form) {
+                var formData = new FormData(form);
+                $.ajax({
+                    url: '/api/report',
+                    type: 'POST',
+                    data: formData,
+                    async: false,
+                    success: function(data) {
+                        $('.alert-success').fadeIn();
+                        setTimeout(function() {
+                            $('.alert-success').fadeOut();
+                        }, 3000);
+
+                        setTimeout(function() {
+                            $('#report-modal').modal('hide');
+                        }, 4000);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
             }
-        });
-
-        $('#report-form').submit(function(e) {
-            e.preventDefault();
-
-            var formData = new FormData(this);
-
-            $.ajax({
-                url: '/api/report',
-                type: 'POST',
-                data: formData,
-                async: false,
-                success: function(data) {
-                    $('.alert-success').fadeIn();
-                    setTimeout(function() {
-                        $('.alert-success').fadeOut();
-                    }, 3000);
-
-                    setTimeout(function() {
-                        $('#report-modal').modal('hide');
-                    }, 4000);
-                },
-                error: function(data) {
-                    console.log(data);
-                },
-                cache: false,
-                contentType: false,
-                processData: false
-            });
         });
     });
     </script>
@@ -137,8 +143,8 @@
 
                             <div class="form-group">
                                 <?php $plate_number = (empty($taxi))?"":$taxi->plate_number ?>
-                                {!! Form::label('plate_number', 'Plate Number *',
-                                    ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('plate_number', 'Plate Number',
+                                    ['class' => 'col-sm-3 control-label req']) !!}
                                     <div class="col-sm-6">
                                         {!! Form::text('plate_number', $plate_number,
                                             ['class' => 'form-control',
@@ -147,8 +153,8 @@
                             </div>
                             <div class="form-group">
                                 <?php $name = (empty($taxi))?"":$taxi->name ?>
-                                {!! Form::label('name', 'Taxi Name *',
-                                    ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('name', 'Taxi Name',
+                                    ['class' => 'col-sm-3 control-label req']) !!}
                                 <div class="col-sm-6">
                                     {!! Form::text('name', $name,
                                         ['class' => 'form-control',
@@ -156,8 +162,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                {!! Form::label('incident_date', 'Incident Date *',
-                                    ['class' => 'col-sm-3 control-label']) !!}
+                                {!! Form::label('incident_date', 'Incident Date',
+                                    ['class' => 'col-sm-3 control-label req']) !!}
                                 <div class="col-sm-6">
                                     <div class='input-group date' id='incident_date'>
                                         {!! Form::text('incident_date', \Carbon\Carbon::now(),
@@ -172,7 +178,8 @@
 
                             @if (isset($violations))
                                 <div class="form-group">
-                                    <div class="center"><strong>Violations *</strong></div>
+                                    <div class="center"><strong>Violations
+                                        <span class="req">*</span></strong></div>
                                     <div id="errorViolation" class="center"></div>
                                     <div class="col-sm-6">
                                         <?php
@@ -279,8 +286,8 @@
                             @if (!Auth::user())
                                 <div class="register">
                                     <div class="form-group">
-                                        {!! Form::label('email', 'Email Address *',
-                                            ['class' => 'col-sm-3 control-label']) !!}
+                                        {!! Form::label('email', 'Email Address',
+                                            ['class' => 'col-sm-3 control-label req']) !!}
                                         <div class="col-sm-6">
                                             {!! Form::text('email', '',
                                                 ['class' => 'form-control',
@@ -290,18 +297,18 @@
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('full_name', 'Full Name *',
-                                            ['class' => 'col-sm-3 control-label']) !!}
+                                        {!! Form::label('full_name', 'Full Name',
+                                            ['class' => 'col-sm-3 control-label req']) !!}
                                         <div class="col-sm-6">
                                             {!! Form::text('full_name', '',
-                                                ['class' => 'form-control', 'required',
+                                                ['class' => 'form-control req', 'required',
                                                 'placeholder' => 'ie. Squall Leonhart']) !!}
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('contact_number', 'Contact Number *',
-                                            ['class' => 'col-sm-3 control-label']) !!}
+                                        {!! Form::label('contact_number', 'Contact Number',
+                                            ['class' => 'col-sm-3 control-label req']) !!}
                                         <div class="col-sm-6">
                                             {!! Form::text('contact_number', '',
                                                 ['class' => 'form-control', 'required',
@@ -310,8 +317,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        {!! Form::label('reg_password', 'Password *',
-                                            ['class' => 'col-sm-3 control-label']) !!}
+                                        {!! Form::label('reg_password', 'Password',
+                                            ['class' => 'col-sm-3 control-label req']) !!}
                                         <div class="col-sm-6">
                                             {!! Form::password('reg_password',
                                                 ['class' => 'form-control', 'required',
@@ -321,8 +328,8 @@
 
                                     <div class="form-group">
                                         {!! Form::label('reg_password_confirmation',
-                                            'Confirm Password *', ['class' =>
-                                                'col-sm-3 control-label']) !!}
+                                            'Confirm Password', ['class' =>
+                                                'col-sm-3 control-label req']) !!}
                                         <div class="col-sm-6">
                                             {!! Form::password('reg_password_confirmation',
                                                 ['class' => 'form-control', 'required',

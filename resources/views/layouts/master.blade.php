@@ -78,8 +78,9 @@
                     @include('taxi.common.top-violators')
                 </div>
                 <div class="col-sm-4">
-                    <h1>TaxiComplaints</h1>
-                    <h3>Philippines</h3>
+                    <h1>TaxiComplaints<sup class="trademark">
+                        <i class="fa fa-trademark"></i></sup></h1>
+                    <h3>Lets make them popular!</h3>
                     <br>
                     <!-- Button trigger modal -->
                     <button class="btn btn-dark btn-lg" id="btn-report-modal">
@@ -116,7 +117,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h3>Lets make them popular!</h3>
+                    &nbsp;
                 </div>
             </div>
         </div>
