@@ -10,7 +10,7 @@ return [
     'taxi_complaint_page_title'  => 'Taxi Complaints Philippines',
     'taxi_complaint_gov_email'   => 'kurapikats@yahoo.com', // complaint.ltfrb.gov.ph@gmail.com
     'taxi_complaint_gov_name'    => 'LTFRB Public Assistance',
-    'taxi_complaint_admin_email' => 'jesus.nana@gmail.com',
+    'taxi_complaint_admin_email' => 'support@taxicomplaints.net',
 
     /*
     |--------------------------------------------------------------------------
