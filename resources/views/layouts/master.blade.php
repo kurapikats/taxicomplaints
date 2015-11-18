@@ -117,7 +117,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    &nbsp;
+                    <h3><i class="fa fa-android"></i> Mobile apps comming soon! <i class="fa fa-apple"></i></h3>
                 </div>
             </div>
         </div>
