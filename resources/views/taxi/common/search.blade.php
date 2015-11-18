@@ -20,7 +20,13 @@ var searchTaxi = (function() {
 }());
 
 (function() {
-    $('#btn-search').click(function(e) {
+
+    $('#search-form').submit(function(e) {
+        e.preventDefault();
+        searchSubmit();
+    });
+
+    var searchSubmit = function() {
         var keyword = $('#keyword').val();
         if (keyword != '') {
             $.get('/api/search/' + keyword).done(function(data) {
@@ -64,6 +70,11 @@ var searchTaxi = (function() {
 
             });
         }
+    };
+
+
+    $('#btn-search').click(function(e) {
+        searchSubmit();
     });
 
     // clear modal data when on close
