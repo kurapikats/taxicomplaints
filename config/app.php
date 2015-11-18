@@ -36,7 +36,7 @@ return [
     |
     */
 
-    'url' => 'http://taxicomplaints.local',
+    'url' => env('APP_URL', 'http://taxicomplaints.net'),
 
     /*
     |--------------------------------------------------------------------------
