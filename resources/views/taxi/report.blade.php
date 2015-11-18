@@ -68,6 +68,8 @@
                     data: formData,
                     async: false,
                     success: function(data) {
+                        window.location.href = '#report-modal-anchor';
+
                         $('.alert-success').fadeIn();
                         setTimeout(function() {
                             $('.alert-success').fadeOut();
@@ -78,12 +80,17 @@
                         }, 4000);
                     },
                     error: function(data) {
+                        window.location.href = '#report-modal-anchor';
+
                         console.log(data);
                     },
                     cache: false,
                     contentType: false,
                     processData: false
                 });
+            },
+            invalidHandler: function(form) {
+                window.location.href = '#report-modal-anchor';
             }
         });
     });
@@ -101,7 +108,8 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="report-modal-label"><strong>Report Taxi Form</strong></h4>
+                    <h4 class="modal-title" id="report-modal-label"><strong>
+                    <a name="report-modal-anchor">Report Taxi Form</a></strong></h4>
                 </div>
                 <div class="modal-body">
 
@@ -132,7 +140,8 @@
                                 <div class='login-reminder'>
                                     <p>* If you have an existing account please login first.
                                         <strong>
-                                            <a href="/auth/login">Click here to login.</a>
+                                            <a href="/auth/login" class="login-modal-open">
+                                                Click here to login.</a>
                                         </strong>
                                     </p>
                                     <p>* Don't have an account yet? You can use the

@@ -41,7 +41,8 @@
     // login modal scripts
     $(function () {
         // trigger open modal login
-        $('.login-modal-open').click(function() {
+        $('.login-modal-open').click(function(e) {
+            e.preventDefault();
             $('#login-modal').modal('show');
         });
 
@@ -78,8 +79,7 @@
                     @include('taxi.common.top-violators')
                 </div>
                 <div class="col-sm-4">
-                    <h1>TaxiComplaints<sup class="trademark">
-                        <i class="fa fa-trademark"></i></sup></h1>
+                    <h1>TaxiComplaints</h1>
                     <h3>Lets make them popular!</h3>
                     <br>
                     <!-- Button trigger modal -->

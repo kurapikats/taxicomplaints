@@ -188,7 +188,9 @@
             $('#name').val($('#tic_name').text());
 
             $('.taxi-modal-lg').modal('hide');
-            $('#report-modal').modal('show');
+            setTimeout(function() {
+                $('#report-modal').modal('show');
+            }, 500);
         });
 
         // auto load modal box if $object is not empty
