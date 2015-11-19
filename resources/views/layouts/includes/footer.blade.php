@@ -7,7 +7,7 @@
                 </h4>
                 <p><i class="fa fa-globe fa-fw"></i>Philippines</p>
                 <ul class="list-unstyled">
-                    <li><i class="fa fa-phone fa-fw"></i> 0908-2150659</li>
+                    <li><i class="fa fa-mobile"></i> +63 908 2150659</li>
                     <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:{{ config('app.taxi_complaint_admin_email') }}">{{ config('app.taxi_complaint_admin_email') }}</a>
                     </li>
                 </ul>
