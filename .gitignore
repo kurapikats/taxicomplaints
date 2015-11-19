@@ -4,6 +4,7 @@ Homestead.yaml
 Homestead.json
 .env
 /public/components
+/public/iphp.*
 *.sublime-*
 composer.lock
 .env.example

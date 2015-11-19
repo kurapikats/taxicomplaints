@@ -32,3 +32,7 @@ Route::put('api/send-mail', 'ApiController@sendMail');
 Route::post('api/report', 'ApiController@report');
 
 Route::get('admin/dashboard', 'AdminController@dashboard');
+
+// facebook auth integration
+Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/facebook/cb', 'Auth\AuthController@handleProviderCallback');

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use App\User;
 use Validator;
+use Socialite;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -64,5 +67,42 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Redirect the user to the Facebook authentication page.
+     *
+     * @return Response
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Facebook.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback(Request $request)
+    {
+        $code = $request->code;
+        if (strlen($code) == 0) return redirect('/auth/login')
+            ->with('message', 'There was an error communicating with Facebook');
+
+        $fb_user = Socialite::driver('facebook')->user();
+
+        $user = User::whereEmail($fb_user->getEmail())->first();
+
+        if (empty($user)) $user = new User();
+
+        $user->name  = $fb_user->getName();
+        $user->email = $fb_user->getEmail();
+        $user->photo = $fb_user->getAvatar();
+        $user->save();
+
+        Auth::login($user);
+
+        return redirect('/');
     }
 }
