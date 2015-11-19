@@ -22,6 +22,8 @@
 
             var validator = form.validate();
             validator.resetForm();
+
+            $('#report-btn').attr('disabled', false);
         });
 
         $('#incident_date').datetimepicker({
@@ -61,6 +63,9 @@
                 }
             },
             submitHandler: function(form) {
+
+                $('#report-btn').attr('disabled', true);
+
                 var formData = new FormData(form);
                 $.ajax({
                     url: '/api/report',
@@ -91,6 +96,7 @@
             },
             invalidHandler: function(form) {
                 window.location.href = '#report-modal-anchor';
+                $('#report-btn').attr('disabled', false);
             }
         });
     });
@@ -356,7 +362,8 @@
                 </div> <!-- ./modal-body -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    {!! Form::submit('Report this Taxi', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Report this Taxi', ['class' => 'btn btn-primary',
+                        'id' => 'report-btn']) !!}
                 </div> <!-- ./modal-footer -->
 
             {!! Form::close() !!}
