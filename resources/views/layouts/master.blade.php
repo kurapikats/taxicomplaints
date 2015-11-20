@@ -103,7 +103,7 @@
                     <h2>TaxiComplaints is a FREE to use community driven public service.</h2>
                     <p class="lead">It aims to help fellow commuters report Taxi service violations.</p>
                     <p>The system automatically sends a complaint report to LTFRB.</p>
-                    <p>* Built using Free and OpenSource softwares, anyone who's capable is encouraged to help and <a href="#footer">contribute</a>.</p>
+                    <p>* Built using Free and OpenSource softwares, anyone who's capable is invited to help and <a href="#footer">contribute</a>.</p>
                 </div>
             </div>
             <!-- /.row -->
