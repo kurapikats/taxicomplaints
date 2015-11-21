@@ -100,7 +100,7 @@ $(function () {
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($taxi_complaints['unvalidated'] as $tc_unvalidated)
+                    @forelse ($taxi_complaints['unvalidated'] as $tc_unvalidated)
                         <tr>
                             <td>{{ $tc_unvalidated->id }}
                             </td>
@@ -127,7 +127,11 @@ $(function () {
                                     data-loading-text="Updating...">Validate</button>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" align="center">N/A</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
             <div class="pull-right">
@@ -147,7 +151,7 @@ $(function () {
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($taxi_complaints['validated'] as $tc_validated)
+                    @forelse ($taxi_complaints['validated'] as $tc_validated)
                         <tr>
                             <td>{{ $tc_validated->id }}
                             </td>
@@ -182,7 +186,11 @@ $(function () {
                                     data-loading-text="Updating...">{{ $btn_text }}</button>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" align="center">N/A</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
             <div class="pull-right">

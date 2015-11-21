@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 use App\TaxiComplaint;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -33,5 +34,21 @@ class AdminController extends Controller
         $taxi_complaints['validated'] = $valid_taxi_complaints;
 
         return view('admin.dashboard', compact('taxi_complaints'));
+    }
+
+    public function users()
+    {
+        $users = User::orderBy('id')->paginate(10);
+
+        return view('admin.users', compact('users'));
+    }
+
+    public function deleteUser(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->delete();
+
+        return redirect('/admin/users')->with('message',
+            'User : ' . $user->name . ' has been deleted.');
     }
 }

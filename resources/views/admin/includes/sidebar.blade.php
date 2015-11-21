@@ -16,16 +16,7 @@
                 <a href="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i> User<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="/admin/users/admin">Admin</a>
-                    </li>
-                    <li>
-                        <a href="/admin/users/regular">Regular</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level -->
+                <a href="/admin/users"><i class="fa fa-user fa-fw"></i> Users</a>
             </li>
         </ul>
     </div>
