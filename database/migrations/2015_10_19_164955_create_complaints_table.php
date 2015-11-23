@@ -22,8 +22,11 @@ class CreateComplaintsTable extends Migration
             $table->string('drivers_name')->nullable();
             $table->boolean('valid')->default(false);
             $table->boolean('mail_sent')->default(false);
-            $table->integer('created_by');
+            $table->unsignedInteger('created_by');
             $table->timestamps();
+
+            $table->foreign('created_by')->references('id')
+                ->on('users')->onDelete('cascade');
         });
     }
 
