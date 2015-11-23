@@ -8,6 +8,14 @@ use Mail;
 
 class TaxiComplaint extends Model
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['taxi_complaint_id', 'violation_id'];
+
     public function taxi()
     {
         return $this->belongsTo('App\Taxi')->first();
@@ -111,5 +119,14 @@ class TaxiComplaint extends Model
         });
 
         return $mail;
+    }
+
+    public static function getPaginated($valid = 0, $per_page = 10,
+        $order_by = 'id', $sort = 'desc')
+    {
+        $data = self::where('valid', '=', $valid)
+            ->orderBy($order_by, $sort)->paginate($per_page);
+
+        return $data;
     }
 }

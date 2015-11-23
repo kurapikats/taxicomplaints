@@ -8,6 +8,11 @@ use DB;
 
 class Taxi extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['plate_number', 'name', 'description'];
 
     public function taxi_pictures()
@@ -189,6 +194,24 @@ class Taxi extends Model
 
             return ['taxi_id' => $taxi->id];
         }); // end db::transaction
+
+        return $data;
+    }
+
+    public static function getPaginated($per_page = 10, $order_by = 'id',
+        $sort = 'desc')
+    {
+        $data = self::orderBy($order_by, $sort)->paginate($per_page);
+
+        return $data;
+    }
+
+    public static function getCommonPageData()
+    {
+        $top_violators = TaxiViolation::getTopViolators(10);
+        $taxis = self::getPaginated();
+        $violations = Violation::lists('name', 'id');
+        $data = compact('taxis', 'top_violators', 'violations');
 
         return $data;
     }

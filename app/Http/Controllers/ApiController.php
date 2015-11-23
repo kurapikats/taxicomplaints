@@ -90,10 +90,10 @@ class ApiController extends Controller
         if (is_null($user))
         {
             $rules += [
-                'email'                 => 'required|email',
-                'full_name'             => 'required',
-                'contact_number'        => 'required',
-                'reg_password'          => 'required|confirmed'
+                'email'          => 'required|email',
+                'full_name'      => 'required',
+                'contact_number' => 'required',
+                'reg_password'   => 'required|confirmed'
             ];
         }
 
@@ -125,8 +125,6 @@ class ApiController extends Controller
                 'password' => $request->password
             ]);
         }
-
-        // return redirect('/');
 
         if (!empty($data) && is_array($data) && isset($data['taxi_id']))
         {

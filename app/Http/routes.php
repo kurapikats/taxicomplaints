@@ -24,10 +24,8 @@ Route::put('profile/update', 'UserController@profileUpdate');
 Route::put('profile/change-password', 'UserController@changePassword');
 
 Route::get('/{id}', 'TaxiController@show')->where(['id' => '[0-9]+']);
-Route::get('report', function() {
-    return redirect('/');
-});
 
+// API endpoints
 Route::get('api/show/{taxi_id}', 'ApiController@show')->where(['taxi_id' => '[0-9]+']);;
 Route::get('api/search/{keyword}', 'ApiController@search');
 Route::put('api/validate', 'ApiController@complaintValidate');

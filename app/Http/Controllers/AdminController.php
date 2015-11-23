@@ -17,7 +17,7 @@ class AdminController extends Controller
     {
         $this->middleware('auth');
 
-        if (!Auth::user()->isAdmin())
+        if (Auth::user() && !Auth::user()->isAdmin())
         {
             Auth::logout();
         }
@@ -25,10 +25,8 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $invalid_taxi_complaints = TaxiComplaint::where('valid', '=', 0)
-            ->orderBy('id', 'desc')->paginate(10);
-        $valid_taxi_complaints = TaxiComplaint::where('valid', '=', 1)
-            ->orderBy('id', 'desc')->paginate(10);
+        $invalid_taxi_complaints = TaxiComplaint::getPaginated(0);
+        $valid_taxi_complaints = TaxiComplaint::getPaginated(1);
 
         $taxi_complaints['unvalidated'] = $invalid_taxi_complaints;
         $taxi_complaints['validated'] = $valid_taxi_complaints;
@@ -38,15 +36,14 @@ class AdminController extends Controller
 
     public function users()
     {
-        $users = User::orderBy('id')->paginate(10);
+        $users = User::getPaginated();
 
         return view('admin.users', compact('users'));
     }
 
     public function deleteUser(Request $request)
     {
-        $user = User::find($request->user_id);
-        $user->delete();
+        $user = User::deleteUser($request->user_id);
 
         return redirect('/admin/users')->with('message',
             'User : ' . $user->name . ' has been deleted.');

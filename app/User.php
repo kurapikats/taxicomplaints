@@ -31,7 +31,8 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'contact_number',
+        'address', 'photo'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -90,5 +91,21 @@ class User extends Model implements AuthenticatableContract,
         }
 
         return false;
+    }
+
+    public static function deleteUser($user_id)
+    {
+        $user = self::find($user_id);
+        $user->delete();
+
+        return $user;
+    }
+
+    public static function getPaginated($per_page = 10, $order_by = 'id',
+        $sort = 'asc')
+    {
+        $data = self::orderBy($order_by, $sort)->paginate($per_page);
+
+        return $data;
     }
 }

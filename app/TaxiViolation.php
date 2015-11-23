@@ -8,6 +8,14 @@ use DB;
 
 class TaxiViolation extends Model
 {
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['taxi_complaint_id', 'violation_id'];
+
     public function violation()
     {
         return $this->belongsTo('App\Violation')->first();
