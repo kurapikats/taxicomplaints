@@ -12,8 +12,11 @@
 
 @include('layouts.includes.site_styles')
 
-<!-- todo: remove this on production -->
-{!! Html::style('css/styles.less', array('rel' => 'stylesheet/less')) !!}
+@if (env('APP_ENV') === 'local')
+    {!! Html::style('css/styles.less', array('rel' => 'stylesheet/less')) !!}
+@else
+    {!! Html::style('css/styles.css') !!}
+@endif
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
