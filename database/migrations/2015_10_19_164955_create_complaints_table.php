@@ -14,7 +14,7 @@ class CreateComplaintsTable extends Migration
     {
         Schema::create('taxi_complaints', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('taxi_id');
+            $table->unsignedInteger('taxi_id');
             $table->date('incident_date');
             $table->time('incident_time')->nullable();
             $table->string('incident_location');
@@ -25,6 +25,8 @@ class CreateComplaintsTable extends Migration
             $table->unsignedInteger('created_by');
             $table->timestamps();
 
+            $table->foreign('taxi_id')->references('id')
+                ->on('taxis')->onDelete('cascade');
             $table->foreign('created_by')->references('id')
                 ->on('users')->onDelete('cascade');
         });
