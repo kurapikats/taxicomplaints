@@ -70,13 +70,12 @@ class Taxi extends Model
         return $uniq_violations;
     }
 
-    public static function search($keyword, $field_name = 'plate_number',
-        $order_by = 'asc', $limit = 10)
+    public static function search($keyword, $order_by = 'asc', $limit = 10)
     {
         $keyword = self::sanitize($keyword);
-        $taxis   = self::where($field_name, 'like', '%'.$keyword.'%')
-                    ->limit($limit)
-                    ->orderBy($field_name, $order_by)->get();
+        $taxis   = self::where('plate_number', 'like', '%'.$keyword.'%')
+                    ->orWhere('name', 'like', '%'.$keyword.'%')->limit($limit)
+                    ->orderBy('plate_number', $order_by)->get();
 
         return $taxis;
     }
