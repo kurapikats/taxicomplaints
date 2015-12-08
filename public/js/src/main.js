@@ -49,7 +49,7 @@ var options = {
     imgUrl: 'http://res.cloudinary.com/kurapikats/image/upload/v1447913675/less_ef5oc3.png'
   },{
     title: 'Linux',
-    linkUrl: 'http://linux.org',
+    linkUrl: 'http://linux.com',
     imgUrl: 'http://res.cloudinary.com/kurapikats/image/upload/v1447913675/linux_lmwqop.png'
   },{
     title: 'MySQL',
