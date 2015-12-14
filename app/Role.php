@@ -15,6 +15,9 @@ class Role extends Model
      */
     protected $fillable = ['name', 'description'];
 
+    /**
+     * Get all users that have this particular Role 
+     */
     public function users()
     {
         return $this->hasMany('App\User');

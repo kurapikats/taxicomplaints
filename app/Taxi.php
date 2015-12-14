@@ -15,24 +15,35 @@ class Taxi extends Model
      */
     protected $fillable = ['plate_number', 'name', 'description'];
 
+    /**
+     * Get all pictures associated to this taxi instance
+     */
     public function taxi_pictures()
     {
         // todo: this can be empty, don't add get?
         return $this->hasMany('App\TaxiPicture')->get();
     }
 
+    /**
+     * Get all Taxi Complains associated to this taxi instance
+     */
     public function taxi_complaints()
     {
         return $this->hasMany('App\TaxiComplaint')->get();
     }
 
+    /**
+     * Get all Taxi Violations associated to this taxi instance
+     */
     public function taxi_violations()
     {
         return $this->hasManyThrough('App\TaxiViolation',
             'App\TaxiComplaint')->get();
     }
 
-    // this is used by the api for friendly values
+    /**
+     * This is used by the API endpoint for friendly values
+     */
     public function violations()
     {
         $taxi_complaints = $this->taxi_complaints();
@@ -40,9 +51,10 @@ class Taxi extends Model
 
         foreach ($taxi_complaints as $k => $taxi_complaint)
         {
+            // Add to array only if not empty
             if (!empty($taxi_complaint->violations()))
             {
-                //$taxi_complaint->id <- index it?
+                // Group violations by taxi_complaint.id
                 $violations[$taxi_complaint->id] = $taxi_complaint->violations();
             }
         }
@@ -50,7 +62,9 @@ class Taxi extends Model
         return $violations;
     }
 
-    // return only unique violations
+    /**
+     * Filter out and return only unique violations
+     */
     public function uniqViolations()
     {
         $violations = [];
