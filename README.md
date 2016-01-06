@@ -14,17 +14,17 @@ TaxiComplaints uses a number of open source projects to work properly:
 ### Step by step guide to setup a working local copy
 Open your favorite Terminal and run these commands.
   1. Clone this repository
-    ```sh
+    ```
     $ git clone {this repo} {directory}
-	  ```
+	```
   2. Change to target directory and run Composer Install
-    ```sh
+    ```
     $ cd {directory}
     $ composer install
     ```
   3. Change the values for Database, Mail, Facebook sections of .env file.
      See sample below:
-    ```sh 
+    ``` 
     $ nano .env
     
         APP_ENV=development
@@ -52,19 +52,19 @@ Open your favorite Terminal and run these commands.
         FB_REDIRECT_URL={yourfbredirecturl}
     ```
   4. Download and install required Node.js modules
-    ```sh
+    ```
     $ npm install
     ```
   5. Install Bower globally.
-    ```sh
+    ```
     $ sudo npm install -g bower
     ``` 
   6. Download and install required Bower modules
-    ```sh
+    ```
     $ bower install
     ```
   7. Update the Users Table Seeder and change default admin and password: line 17 to 21
-    ```sh
+    ```
     $ cd {database seeds}
     $ nano UserTableSeeder.php
     
@@ -79,11 +79,11 @@ Open your favorite Terminal and run these commands.
     $ cd {backtoprojectroot}
     ```
   8. Install database migrations
-    ```sh
+    ```
     $ php artisan migrate --seed
     ```
   9. Run the application, defaults to http://localhost:8000/
-    ```sh
+    ```
     $ php artisan serve
     ```
 
