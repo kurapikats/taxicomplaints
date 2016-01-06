@@ -19,7 +19,8 @@ Open your favorite Terminal and run these commands.
 	```
   2. Change to target directory and run Composer Install
     ```
-    $ cd {directory}
+    $ cd {directory} 
+    
     $ composer install
     ```
   3. Change the values for Database, Mail, Facebook sections of .env file.
