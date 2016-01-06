@@ -1,6 +1,6 @@
 # TaxiComplaints Philippines
 A reporting system that collects information about abusive Taxi Operators / Drivers.
-Verified reports are sent to LTFRB support email.
+Verified reports are sent to LTFRB's support email.
 
 ##### Installation
 TaxiComplaints uses a number of open source projects to work properly:
@@ -11,6 +11,7 @@ TaxiComplaints uses a number of open source projects to work properly:
   - [Laravel] 5.1+
   - [Node.js] v0.12+
   - [Bower] 1.6.5+
+
 ###### Step by step guide to setup a working local copy
 Open your favorite Terminal and run these commands.
   1. Clone this repository
@@ -102,8 +103,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-**Free Software, FTW!**
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
