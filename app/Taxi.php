@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 use DB;
 
+/**
+ * Taxi Operations
+ *
+ * @author Jesus B. Nana <jesus.nana@gmail.com>
+ * @copyright 2015
+ * @license /LICENSE MIT
+ */
 class Taxi extends Model
 {
     /**
@@ -17,6 +24,8 @@ class Taxi extends Model
 
     /**
      * Get all pictures associated to this taxi instance
+     *
+     * @return object List of Pictures associated to a Taxi
      */
     public function taxi_pictures()
     {
@@ -26,6 +35,8 @@ class Taxi extends Model
 
     /**
      * Get all Taxi Complains associated to this taxi instance
+     *
+     * @return object List of Taxi Complaints
      */
     public function taxi_complaints()
     {
@@ -34,6 +45,8 @@ class Taxi extends Model
 
     /**
      * Get all Taxi Violations associated to this taxi instance
+     *
+     * @return object Taxi Violations associated with Taxi
      */
     public function taxi_violations()
     {
@@ -43,6 +56,9 @@ class Taxi extends Model
 
     /**
      * This is used by the API endpoint for friendly values
+     * Get the list of associated Violations of a Taxi
+     *
+     * @return array List of Violations
      */
     public function violations()
     {
@@ -63,7 +79,9 @@ class Taxi extends Model
     }
 
     /**
-     * Filter out and return only unique violations
+     * Filter out duplicates and return only unique violations
+     *
+     * @return array Unique Violations
      */
     public function uniqViolations()
     {
@@ -84,6 +102,16 @@ class Taxi extends Model
         return $uniq_violations;
     }
 
+    /**
+     * Search Taxi database by plate number or taxi name
+     *
+     * @param string $keyword The text to search
+     * @param string $order_by Sort order can be 'asc' ascending or
+     *        'desc' descending
+     * @param integer $limit Limit the number of search results
+     *
+     * @return object List of matched Taxi
+     */
     public static function search($keyword, $order_by = 'asc', $limit = 10)
     {
         $keyword = self::sanitize($keyword);
@@ -94,11 +122,30 @@ class Taxi extends Model
         return $taxis;
     }
 
+    /**
+     * Sanitize's text input from user, remove _, -, white spaces and
+     * this also converts the text uppercase letters
+     *
+     * @param string $keyword The text to sanitize
+     *
+     * @return string Sanitized text
+     */
     public static function sanitize($keyword)
     {
         return strtoupper(str_replace(['_', '-', ' '], '', $keyword));
     }
 
+    /**
+     * Store Taxi and Report information to the database
+     * If $user param is null, this will register the based on the form info.
+     * If the reported taxi already exist on the database use it then create a report
+     * If it doesn't exist yet, register this a new taxi then create a report
+     *
+     * @param object $request Request object from the form
+     * @param object $user User object
+     *
+     * @return array Taxi information
+     */
     public static function store($request, $user)
     {
         $data = DB::transaction(function() use ($request, $user)
@@ -211,6 +258,14 @@ class Taxi extends Model
         return $data;
     }
 
+    /**
+     * Get paginated taxi data
+     *
+     * @param $per_page integer Number of Taxi to list, defaults to 10
+     * @param $order_by string What DB field used to sort the list, defaults to 'id'
+     *
+     * @return object Taxi list that can be iterated
+     */
     public static function getPaginated($per_page = 10, $order_by = 'id',
         $sort = 'desc')
     {
@@ -219,11 +274,19 @@ class Taxi extends Model
         return $data;
     }
 
+    /**
+     * Get common page data like Top Violators, Recently Added, List of Violations
+     *
+     * @return array Data for Top Violators, Recently Added, List of Violations
+     */
     public static function getCommonPageData()
     {
         $top_violators = TaxiViolation::getTopViolators(10);
         $taxis = self::getPaginated();
+
+        // This is used by Report Form for list of Violations
         $violations = Violation::lists('name', 'id');
+
         $data = compact('taxis', 'top_violators', 'violations');
 
         return $data;
