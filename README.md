@@ -2,8 +2,9 @@
 A reporting system that collects information about abusive Taxi Operators / Drivers. Verified reports are sent to LTFRB's support email.
 
 ## Installation
-TaxiComplaints uses a number of open source projects to work properly:
-### System requirements
+TaxiComplaints uses open source projects to work properly:
+
+#### System requirements
   - [PHP] 5.5.9+
   - [MySQL]
   - [Composer]
@@ -11,7 +12,7 @@ TaxiComplaints uses a number of open source projects to work properly:
   - [Node.js] v0.12+
   - [Bower] 1.6.5+
 
-### Step by step guide to setup a working local copy
+#### Step by step guide to setup a working local copy
 Open your favorite Terminal and run these commands.
   1. Clone this repository
     ```
@@ -19,35 +20,35 @@ Open your favorite Terminal and run these commands.
 	```
   2. Change to target directory and run Composer Install
     ```
-    $ cd {directory} 
-    
+    $ cd {directory}
+
     $ composer install
     ```
   3. Change the values for Database, Mail, Facebook sections of .env file.
      See sample below:
-    ``` 
+    ```
     $ nano .env
-    
+
         APP_ENV=development
         APP_DEBUG=true
         APP_KEY={somerandomcharshere}
-        
+
         DB_HOST={dbhost}
         DB_DATABASE={dbname}
         DB_USERNAME={dbuser}
         DB_PASSWORD={dbpassword}
-        
+
         CACHE_DRIVER=file
         SESSION_DRIVER=file
         QUEUE_DRIVER=database
-        
+
         MAIL_DRIVER=smtp
         MAIL_HOST={yoursmtphost}
         MAIL_PORT={yoursmtpport}
         MAIL_USERNAME={yoursmtpusername}
         MAIL_PASSWORD={yoursmtppassword}
         MAIL_ENCRYPTION=tls
-        
+
         FB_CLIENT_ID={yourfbappid}
         FB_CLIENT_SECRET={yourfbclientsecret}
         FB_REDIRECT_URL={yourfbredirecturl}
@@ -59,7 +60,7 @@ Open your favorite Terminal and run these commands.
   5. Install Bower globally.
     ```
     $ sudo npm install -g bower
-    ``` 
+    ```
   6. Download and install required Bower modules
     ```
     $ bower install
@@ -68,7 +69,7 @@ Open your favorite Terminal and run these commands.
     ```
     $ cd {database seeds}
     $ nano UserTableSeeder.php
-    
+
         ...
         name           = Jesus B. Nana,
         email          = xyz@email.com,
@@ -76,7 +77,7 @@ Open your favorite Terminal and run these commands.
         contact_number = 09171234567,
         address        = Makati City,
         ...
-        
+
     $ cd {backtoprojectroot}
     ```
   8. Install database migrations

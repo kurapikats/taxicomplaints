@@ -10,10 +10,16 @@ use App\Taxi;
 
 class TaxiController extends Controller
 {
+    private $data;
+
+    public function __construct()
+    {
+      $this->data = Taxi::getCommonPageData();
+    }
+
     public function home()
     {
-        $data = Taxi::getCommonPageData();
-        return view('layouts.master', $data);
+        return view('layouts.master', $this->data);
     }
 
     /**
@@ -31,9 +37,7 @@ class TaxiController extends Controller
             return redirect('/')->with('message', 'Taxi not found');
         }
 
-        $data = Taxi::getCommonPageData();
-
-        return view('taxi.home', compact('taxi') + $data);
+        return view('taxi.home', compact('taxi') + $this->data);
     }
 
 }
