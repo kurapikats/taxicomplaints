@@ -135,8 +135,8 @@ class TaxiComplaint extends Model
     /**
      * Get Paginated List of Taxi Complaints
      *
-     * @param integer $valid 0 for un-validated (default), 1 for validated reports
-     * @param integer $per_page Total number of Reports to fetch per page
+     * @param int $valid 0 for un-validated (default), 1 for validated reports
+     * @param int $per_page Total number of Reports to fetch per page
      */
     public static function getPaginated($valid = 0, $per_page = 10,
         $order_by = 'id', $sort = 'desc')

@@ -34,9 +34,9 @@ class TaxiViolation extends Model
     /**
      * Get Top Taxi Violators
      *
-     * @param integer $limit Number of limit to get, defaults to 5
+     * @param int $limit Number of limit to get, defaults to 5
      *
-     * @return object List of Top Taxi Violators 
+     * @return object List of Top Taxi Violators
      */
     public static function getTopViolators($limit = 5)
     {

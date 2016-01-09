@@ -131,7 +131,7 @@ class User extends Model implements AuthenticatableContract,
     /**
      * Remove User from the database
      *
-     * @param integer $user_id User's ID
+     * @param int $user_id User's ID
      *
      * @return object User info that has been removed
      */
@@ -146,7 +146,7 @@ class User extends Model implements AuthenticatableContract,
     /**
      * Get Paginated User List
      *
-     * @param integer $per_page Number of users per page
+     * @param int $per_page Number of users per page
      * @param string $order_by DB field which to order, defaults to 'id'
      * @param string $sort Sort direction, defaults to 'asc' ascending,
      *        'desc' for descending

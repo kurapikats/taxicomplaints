@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 use Auth;
 
+/**
+ * User's Controller
+ *
+ * @author Jesus B. Nana <jesus.nana@gmail.com>
+ * @copyright 2015
+ * @license /LICENSE MIT
+ */
 class UserController extends Controller
 {
 
@@ -19,12 +26,24 @@ class UserController extends Controller
         $this->user = Auth::user();
     }
 
+    /**
+     * Get: View Current User's Profile
+     *
+     * @return mixed Profile Page
+     */
     public function profile()
     {
         $user = $this->user;
         return view('user.profile', compact('user'));
     }
 
+    /**
+     * Put: User Profile Update Request
+     *
+     * @param object $request Data from Edit Profile Form
+     *
+     * @return mixed Redirects to User's Profile page
+     */
     public function profileUpdate(Request $request)
     {
         $this->validate($request, [
@@ -65,6 +84,13 @@ class UserController extends Controller
         return redirect('/profile');
     }
 
+    /**
+     * Put: Change Password Request
+     *
+     * @param object $request Data from Change Password Form
+     *
+     * @return mixed Redirects to Profile Page
+     */
     public function changePassword(Request $request)
     {
         $this->validate($request, [

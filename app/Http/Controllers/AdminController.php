@@ -10,9 +10,19 @@ use Auth;
 use App\TaxiComplaint;
 use App\User;
 
+/**
+ * Admin Controller
+ *
+ * @author Jesus B. Nana <jesus.nana@gmail.com>
+ * @copyright 2015
+ * @license /LICENSE MIT
+ */
 class AdminController extends Controller
 {
 
+    /**
+     * User must be logged-in and an admin to use these features
+     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -23,6 +33,11 @@ class AdminController extends Controller
         }
     }
 
+    /**
+     * Admin Dashboard Page
+     *
+     * @return mixed View Admin Dashboard Page
+     */
     public function dashboard()
     {
         $invalid_taxi_complaints = TaxiComplaint::getPaginated(0);
@@ -34,6 +49,11 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('taxi_complaints'));
     }
 
+    /**
+     * List of Registered Users
+     *
+     * @return mixed View the List of Registerd Users Page
+     */
     public function users()
     {
         $users = User::getPaginated();

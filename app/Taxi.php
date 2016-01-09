@@ -108,7 +108,7 @@ class Taxi extends Model
      * @param string $keyword The text to search
      * @param string $order_by Sort order can be 'asc' ascending or
      *        'desc' descending
-     * @param integer $limit Limit the number of search results
+     * @param int $limit Limit the number of search results
      *
      * @return object List of matched Taxi
      */
@@ -261,7 +261,7 @@ class Taxi extends Model
     /**
      * Get paginated taxi data
      *
-     * @param $per_page integer Number of Taxi to list, defaults to 10
+     * @param $per_page int Number of Taxi to list, defaults to 10
      * @param $order_by string What DB field used to sort the list, defaults to 'id'
      *
      * @return object Taxi list that can be iterated
