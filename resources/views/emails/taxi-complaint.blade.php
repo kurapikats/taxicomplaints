@@ -36,6 +36,7 @@ Notes: <strong>{{ $data['complaint']['notes'] ?: 'N/A' }}</strong><br>
 
 <p>Taxi Details:<br>
 Plate Number: <strong>{{ $data['taxi']['plate_number'] }}</strong><br>
+Vehicle Type: <strong>Taxi</strong><br>
 Taxi Name: <strong>{{ $data['taxi']['name'] ?: 'N/A' }}</strong><br>
 Taxi Description: <strong>{{ $data['taxi']['description'] ?: 'N/A' }}</strong><br>
 Drivers name: <strong>{{ $data['complaint']['drivers_name'] ?: 'N/A' }}</strong><br>
@@ -63,4 +64,3 @@ You may also view this info at {!! link_to($url, $url,
 
 <p>Regards,<br>
 {{ $data['reporter']['name'] }}</p>
-

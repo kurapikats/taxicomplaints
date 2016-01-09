@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 use DB;
 
+/**
+ * Taxi Violations
+ *
+ * @author Jesus B. Nana <jesus.nana@gmail.com>
+ * @copyright 2015
+ * @license /LICENSE MIT
+ */
 class TaxiViolation extends Model
 {
 
@@ -16,11 +23,21 @@ class TaxiViolation extends Model
      */
     protected $fillable = ['taxi_complaint_id', 'violation_id'];
 
+    /**
+     * Get all Violations associated to the current Taxi instance.
+     */
     public function violation()
     {
         return $this->belongsTo('App\Violation')->first();
     }
 
+    /**
+     * Get Top Taxi Violators
+     *
+     * @param integer $limit Number of limit to get, defaults to 5
+     *
+     * @return object List of Top Taxi Violators 
+     */
     public static function getTopViolators($limit = 5)
     {
         $sql   = 'count(*) as counter, plate_number, taxis.id, taxis.name';

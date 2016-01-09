@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 use Mail;
 
+/**
+ * Taxi Complaints
+ *
+ * @author Jesus B. Nana <jesus.nana@gmail.com>
+ * @copyright 2015
+ * @license /LICENSE MIT
+ */
 class TaxiComplaint extends Model
 {
 
@@ -16,16 +23,31 @@ class TaxiComplaint extends Model
      */
     protected $fillable = ['taxi_complaint_id', 'violation_id'];
 
+    /**
+     * Get Taxi Details
+     *
+     * @return object Taxi Details
+     */
     public function taxi()
     {
         return $this->belongsTo('App\Taxi')->first();
     }
 
+    /**
+     * Get Taxi Violations
+     *
+     * @return object Taxi Violations
+     */
     public function taxi_violations()
     {
         return $this->hasMany('App\TaxiViolation')->get();
     }
 
+    /**
+     * Get list of Violations that can be used on dropdowns, listing, etc.
+     *
+     * @return array List of Violations
+     */
     public function violations()
     {
         $violations = [];
@@ -36,44 +58,33 @@ class TaxiComplaint extends Model
         return $violations;
     }
 
+    /**
+     * Get all Taxi Photos
+     *
+     * @return object Taxi Photos
+     */
     public function pictures()
     {
         return $this->taxi()->taxi_pictures();
     }
 
+    /**
+     * Get the associated User Details to a Taxi Complaint
+     *
+     * @return object Associcated User
+     */
     public function user()
     {
         return $this->hasOne('App\User', 'id', 'created_by')->first();
     }
 
     /**
+     * Send email to LTFRB support, cc to reporter, bcc to admin
      *
+     * @param object $taxi_complaint TaxiComplaint report
      *
+     * @return boolean true on success false on failure
      */
-    public function isValid()
-    {
-        $data = 'False';
-
-        if ($this->valid == 1)
-        {
-            $data = 'True';
-        }
-
-        return $data;
-    }
-
-    public function mailSent()
-    {
-        $data = 'False';
-
-        if ($data == 1)
-        {
-            $data = 'True';
-        }
-
-        return $data;
-    }
-
     public static function sendMail(TaxiComplaint $taxi_complaint)
     {
         $taxi       = $taxi_complaint->taxi();
@@ -121,6 +132,12 @@ class TaxiComplaint extends Model
         return $mail;
     }
 
+    /**
+     * Get Paginated List of Taxi Complaints
+     *
+     * @param integer $valid 0 for un-validated (default), 1 for validated reports
+     * @param integer $per_page Total number of Reports to fetch per page
+     */
     public static function getPaginated($valid = 0, $per_page = 10,
         $order_by = 'id', $sort = 'desc')
     {
