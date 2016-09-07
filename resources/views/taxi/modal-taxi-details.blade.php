@@ -160,7 +160,9 @@
             $('.' + targetClass).colorbox({
                 rel: 'gallery',
                 fixed: true,
-                photo: true
+                photo: true,
+                maxWidth: '95%',
+                maxHeight: '95%'
             });
         }; // end taxi.cbox()
 
