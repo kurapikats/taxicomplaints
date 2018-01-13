@@ -42,6 +42,7 @@
                                         'Email Address *') !!}
                                     {!! Form::text('email', old('email'),
                                         ['class' => 'form-control',
+                                            'id' => 'email_id',
                                             'required', 'email']) !!}
                                 </div>
 
