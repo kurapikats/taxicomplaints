@@ -1,5 +1,5 @@
 {
-  "name": "TaxiComplaints",
+  "name": "taxicomplaints",
   "description": "",
   "main": "",
   "authors": [
@@ -9,7 +9,7 @@
   "moduleType": [
     "amd"
   ],
-  "homepage": "",
+  "homepage": "http://taxicomplaints.net",
   "private": true,
   "ignore": [
     "**/.*",
