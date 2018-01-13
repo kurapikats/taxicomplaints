@@ -64,8 +64,7 @@
                     '<td class="col-sm-2">Incident Date</td>' +
                     '<td class="col-sm-2">Incident Time</td>' +
                     '<td class="col-sm-2">Driver\'s Name</td>' +
-                    '<td class="col-sm-2">Incident Location</td>' +
-                    '<td class="col-sm-3">Notes</td>'
+                    '<td class="col-sm-2">Incident Location</td>'
                 );
                 $(theadr).append(theadd);
                 $(tbdy).append(theadr);
@@ -125,11 +124,25 @@
                         '<td align="center">' + formatted_date + '</td>' +
                         '<td align="center">' + formatted_time + '</td>' +
                         '<td>' + formatted_drivers_name + '</td>' +
-                        '<td>' + formatted_incident_location + '</td>' +
-                        '<td>' + formatted_notes + '</td>'
+                        '<td>' + formatted_incident_location + '</td>'
                     );
                     $(tr).append(td);
+
+                    var trNotes = document.createElement('tr');
+                    var tdNotes = $(
+                        '<td colspan="5">' + formatted_notes + '</td>'
+                    )
+                    $(trNotes).append(tdNotes);
+
+                    var trSpace = document.createElement('tr');
+                    var tdSpace = $(
+                        '<td colspan="5">&nbsp;</td>'
+                    )
+                    $(trSpace).append(tdSpace);
+
                     tbdy.appendChild(tr);
+                    tbdy.appendChild(trNotes);
+                    tbdy.appendChild(trSpace);
                 });
                 tbl.appendChild(tbdy);
                 $('#tic_taxi_complaints').append($(tbl));
