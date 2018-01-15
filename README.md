@@ -22,7 +22,7 @@ Open your favorite Terminal and run these commands.
     ```
     $ cd {directory}
 
-    $ composer install
+    $ composer install --no-scripts
     ```
   3. Change the values for Database, Mail, Facebook sections of .env file.
      See sample below:
@@ -84,6 +84,14 @@ Open your favorite Terminal and run these commands.
     ```
     $ php artisan migrate --seed
     ```
+    If you get an error similar to this: 
+    
+    ```
+    PHP Warning:  require(D:\taxicomplaints\bootstrap/../vendor/autoload.php): failed to open stream: No such file or dir
+ectory in D:\taxicomplaints\bootstrap\autoload.php on line 17
+    ```
+    Just run ``$ composer update --no-scripts`` to fix the problem
+    
   9. Run the application, defaults to http://localhost:8000/
     ```
     $ php artisan serve
