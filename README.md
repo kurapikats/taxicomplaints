@@ -15,87 +15,88 @@ TaxiComplaints uses open source projects to work properly:
 #### Step by step guide to setup a working local copy
 Open your favorite Terminal and run these commands.
   1. Clone this repository
-    ```
-    $ git clone {this repo} {directory}
-	```
+     ```
+     $ git clone {this repo} {directory}
+     ```
   2. Change to target directory and run Composer Install
-    ```
-    $ cd {directory}
+     ```
+     $ cd {directory}
 
-    $ composer install --no-scripts
-    ```
-  3. Change the values for Database, Mail, Facebook sections of .env file.
-     See sample below:
-    ```
-    $ nano .env
-
-        APP_ENV=development
-        APP_DEBUG=true
-        APP_KEY={somerandomcharshere}
-
-        DB_HOST={dbhost}
-        DB_DATABASE={dbname}
-        DB_USERNAME={dbuser}
-        DB_PASSWORD={dbpassword}
-
-        CACHE_DRIVER=file
-        SESSION_DRIVER=file
-        QUEUE_DRIVER=database
-
-        MAIL_DRIVER=smtp
-        MAIL_HOST={yoursmtphost}
-        MAIL_PORT={yoursmtpport}
-        MAIL_USERNAME={yoursmtpusername}
-        MAIL_PASSWORD={yoursmtppassword}
-        MAIL_ENCRYPTION=tls
-
-        FB_CLIENT_ID={yourfbappid}
-        FB_CLIENT_SECRET={yourfbclientsecret}
-        FB_REDIRECT_URL={yourfbredirecturl}
-    ```
-  4. Download and install required Node.js modules
-    ```
-    $ npm install
-    ```
-  5. Install Bower globally.
-    ```
-    $ sudo npm install -g bower
-    ```
-  6. Download and install required Bower modules
-    ```
-    $ bower install
-    ```
-  7. Update the Users Table Seeder and change default admin and password: line 17 to 21
-    ```
-    $ cd {database seeds}
-    $ nano UserTableSeeder.php
-
-        ...
-        name           = Jesus B. Nana,
-        email          = xyz@email.com,
-        password       = bcrypt(xyzpassword),
-        contact_number = 09171234567,
-        address        = Makati City,
-        ...
-
-    $ cd {backtoprojectroot}
-    ```
-  8. Install database migrations
-    ```
-    $ php artisan migrate --seed
-    ```
-    If you get an error similar to this: 
+     $ composer install --no-scripts
+     ```
     
+  3. Change the values for Database, Mail, Facebook sections of `.env` file.
+     See sample below:
+     ```
+     $ nano .env
+
+     APP_ENV=development
+     APP_DEBUG=true
+     APP_KEY={somerandomcharshere}
+
+     DB_HOST={dbhost}
+     DB_DATABASE={dbname}
+     DB_USERNAME={dbuser}
+     DB_PASSWORD={dbpassword}
+
+     CACHE_DRIVER=file
+     SESSION_DRIVER=file
+     QUEUE_DRIVER=database
+
+     MAIL_DRIVER=smtp
+     MAIL_HOST={yoursmtphost}
+     MAIL_PORT={yoursmtpport}
+     MAIL_USERNAME={yoursmtpusername}
+     MAIL_PASSWORD={yoursmtppassword}
+     MAIL_ENCRYPTION=tls
+
+     FB_CLIENT_ID={yourfbappid}
+     FB_CLIENT_SECRET={yourfbclientsecret}
+     FB_REDIRECT_URL={yourfbredirecturl}
+     ```
+  4. Download and install required Node.js modules
+     ```
+     $ npm install
+     ```
+  5. Install Bower globally.
+     ```
+     $ sudo npm install -g bower
+     ```
+  6. Download and install required Bower modules
+     ```
+     $ bower install
+     ```
+  7. Update the Users Table Seeder and change default admin and password: line 17 to 21
+     ```
+     $ cd {database seeds}
+     $ nano UserTableSeeder.php
+
+     ...
+     name           = Jesus B. Nana,
+     email          = xyz@email.com,
+     password       = bcrypt(xyzpassword),
+     contact_number = 09171234567,
+     address        = Makati City,
+     ...
+
+     $ cd {backtoprojectroot}
+     ```
+  8. Install database migrations
+     ```
+     $ php artisan migrate --seed
+     ```
+     
+     If you get an error similar to this:    
+     
+     ```
+    PHP Warning:  require(/taxicomplaints/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory in /taxicomplaints/bootstrap/autoload.php on line 17
     ```
-    PHP Warning:  require(D:\taxicomplaints\bootstrap/../vendor/autoload.php): failed to open stream: No such file or dir
-ectory in D:\taxicomplaints\bootstrap\autoload.php on line 17
-    ```
-    Just run ``$ composer update --no-scripts`` to fix the problem
+    Just run `$ composer update --no-scripts` to fix the problem
     
   9. Run the application, defaults to http://localhost:8000/
-    ```
-    $ php artisan serve
-    ```
+     ```
+     $ php artisan serve
+     ```
 
 ## Version
 1.0.0
