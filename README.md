@@ -86,17 +86,17 @@ Open your favorite Terminal and run these commands.
      $ php artisan migrate --seed
      ```
      
-     If you get an error similar to this:    
-     
+     *If you get an error similar to this: 
      ```
-    PHP Warning:  require(/taxicomplaints/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory in /taxicomplaints/bootstrap/autoload.php on line 17
-    ```
-    Just run `$ composer update --no-scripts` to fix the problem
+     PHP Warning:  require(/taxicomplaints/bootstrap/../vendor/autoload.php): failed to open stream: No such file or directory in /taxicomplaints/bootstrap/autoload.php on line 17
+     ```
+     Just run `$ composer update --no-scripts` to fix the problem
     
-  9. Run the application, defaults to http://localhost:8000/
+  9. Finally run the application.
      ```
      $ php artisan serve
      ```
+     This will serve the app to `http://localhost:8000`
 
 ## Version
 1.0.0
