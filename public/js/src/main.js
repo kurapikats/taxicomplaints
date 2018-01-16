@@ -1,4 +1,4 @@
-var options = {
+const options = {
   thumbImages : [{
     title: 'Apache',
     linkUrl: 'http://httpd.apache.org',
@@ -74,36 +74,20 @@ var options = {
   }]
 };
 
-var OpenSourceImg = React.createClass({
-  render: function() {
-    return (
-      <a href={this.props.linkUrl} target="_blank">
-        <img src={this.props.imgUrl} title={this.props.title} alt={this.props.title} />
-      </a>
-    );
-  }
-});
+const OpenSourceImg = (props) => (
+  <a href={props.linkUrl} target="_blank">
+    <img src={props.imgUrl} title={props.title} alt={props.title} />
+  </a>
+)
 
-var ImagesCon = React.createClass({
-  render: function() {
-    var ImgList = this.props.thumbImages.map(function(imgProps){
-      return <OpenSourceImg {...imgProps} key={imgProps.title} />
-    });
+const ImagesCon = (props) => {
+  const ImgList = props.thumbImages.map((imgProps) => {
+    return <OpenSourceImg {...imgProps} key={imgProps.title} />
+  });
 
-    return (
-      <div>
-        {ImgList}
-      </div>
-    );
-  }
-});
+  return (<div>{ImgList}</div>)
+}
 
-var Main = React.createClass({
-  render: function() {
-    return (
-      <ImagesCon {...options} />
-    );
-  }
-});
+const Main = (props) => <ImagesCon {...options} />
 
-ReactDOM.render(<Main />, document.querySelector('.opensource-gallery'));
+ReactDOM.render(<Main />, document.querySelector('.opensource-gallery'))
