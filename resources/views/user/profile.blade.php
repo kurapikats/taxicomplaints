@@ -129,7 +129,7 @@
                             {!! Form::label('photo', 'Photo',
                                 ['class' => 'col-sm-2 control-label']) !!}
                             <div class="col-sm-3">
-                                {!! Form::file('photo', '',
+                                {!! Form::file('photo',
                                     ['class' => 'form-control']) !!}
                             </div>
                         </div>
