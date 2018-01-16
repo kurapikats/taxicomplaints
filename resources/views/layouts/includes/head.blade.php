@@ -12,7 +12,7 @@
 
 @include('layouts.includes.site_styles')
 
-@if (env('APP_ENV') === 'local')
+@if (env('APP_ENV') === 'development')
     {!! Html::style('css/styles.less', array('rel' => 'stylesheet/less')) !!}
 @else
     {!! Html::style('css/styles.css') !!}
