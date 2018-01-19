@@ -107,7 +107,7 @@ Jesus B. Nana (@kurapikats)
 support@taxicomplaints.net
 
 ## License
-TaxiComplaints (C) 2015-2016 is available under MIT license.
+TaxiComplaints (C) 2015-2018 is available under MIT license.
 
 The MIT License (MIT)
 
