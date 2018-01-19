@@ -8,7 +8,7 @@ TaxiComplaints uses open source projects to work properly:
   - [PHP] 5.5.9+
   - [MySQL]
   - [Composer]
-  - [Laravel] 5.1+
+  - [Laravel] 5.2+
   - [Node.js] v0.12+
   - [Bower] 1.6.5+
 
