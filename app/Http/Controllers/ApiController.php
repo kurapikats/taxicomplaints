@@ -37,7 +37,7 @@ class ApiController extends Controller
     {
         $taxi = Taxi::find($taxi_id);
 
-        if (count($taxi) > 0)
+        if (is_object($taxi) && $taxi->id)
         {
             $data['taxi'] = $taxi;
             $data['taxi_pictures'] = $taxi->taxi_pictures();
